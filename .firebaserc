@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "flightreservation-31cca": {
+      "hosting": {
+        "FlightReservationUser": [
+          "flightreservation-31cca"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "flightreservation-31cca"
+  }
+}

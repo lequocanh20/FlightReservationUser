@@ -1,0 +1,98 @@
+<div id="booking" class="section">
+    <div class="section-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="booking-cta">
+              <h1>Book your flight today</h1>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate laboriosam numquam at</p>
+            </div>
+          </div>
+          <div class="col-md-7 col-md-offset-1">
+            <div class="booking-form">
+              <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <div class="form-checkbox" *ngFor="let type of typeOfTravel">
+                    <label [for]="type">
+                      <input class="ItineraryRadio" type="radio" id="{{type}}" name="flight-type" formControlName="flight-type" [value]="type">
+                      <span></span>{{
+                        type == 'one-way' ? 'Một chiều' : 'Khứ hồi'
+                      }}
+                      <span id="distance"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <span class="form-label">Nơi đến</span>
+                      <select id="FlyingFrom" class="form-control" formControlName="FlyingFrom">
+                        <option *ngFor="let flight of flyingFrom" [value]="flight.IATA"> {{ flight.Name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <span class="form-label">Nơi đi</span>
+                      <select id="FlyingFrom" class="form-control" formControlName="FlyingTo">
+                        <option *ngFor="let flight of flyingTo" [value]="flight.IATA"> {{ flight.Name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <span class="form-label">Ngày đi</span>
+                      <input id="Departing" class="form-control" type="date" formControlName="Departing">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group" id="divtxtReturnDate" style="visibility: hidden;">
+                      <span class="form-label">Ngày về</span>
+                      <input id="Returning" class="form-control" type="date" formControlName="Returning">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label">Người lớn (18+)</span>
+                      <select id="Adult" class="form-control" formControlName="Adults">
+                        <option *ngFor="let num of numberOfAdult" [value]="num">{{ num }}</option>
+                      </select>
+                      <span class="select-arrow"></span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label">Trẻ em (0-17)</span>
+                      <select id="Children" class="form-control" formControlName="Childrens">
+                        <option *ngFor="let num of numberOfChild" [value]="num" >{{ num }}</option>
+                      </select>
+                      <span class="select-arrow"></span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <span class="form-label">Travel class</span>
+                      <select id="Travel-Class" class="form-control" formControlName="TravelClass">
+                        <option *ngFor="let travel of travelClass" [value]="travel">{{ travel }}</option>
+                      </select>
+                      <span class="select-arrow"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-btn">
+                  <button class="submit-btn" [routerLink]="['/search-result', reservationForm.value.FlyingFrom, 
+                  reservationForm.value.FlyingTo, reservationForm.value.Departing, reservationForm.value.Adults, reservationForm.value.Childrens,
+                  reservationForm.value.TravelClass]" [disabled]="reservationForm.invalid">Tìm kiếm </button>
+                </div>
+              </form>
+              <div>reservationForm.invalid={{reservationForm.invalid}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
